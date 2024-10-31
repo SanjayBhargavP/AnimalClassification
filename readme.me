@@ -14,20 +14,21 @@ This project classifies animal species using `ResNet18` with `PyTorch`. It inclu
 - Python 3.7+, PyTorch, torchvision, scikit-learn, tqdm
 
 Install packages:
-```bash
+
 pip install torch torchvision scikit-learn tqdm
-```
+
 
 ## Dataset Structure
-```
+
 animals10/
     ├── train/
     ├── val/
     └── test/
-```
+
 Each class directory should contain images.
 
 ## Configuration (`config.json`)
+
 ```json
 {
     "data_dir": "path/to/animals10",
@@ -41,10 +42,8 @@ Each class directory should contain images.
 ## Running the Code
 1. Prepare the dataset.
 2. Update `config.json`.
-3. Run:
-```bash
-python main.py
-```
+3. Run: python main.py
+
 
 ## Example Output
 ```
@@ -57,6 +56,4 @@ Test F1 Score: 0.9155
 - GPU recommended for faster training.
 - Modify `model.py` to try other models like `ResNet50`.
 
-## License
-Licensed under MIT.
 
