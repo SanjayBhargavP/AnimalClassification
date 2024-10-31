@@ -1,0 +1,62 @@
+# README: Animal Classification Codebase
+
+## Overview
+This project classifies animal species using `ResNet18` with `PyTorch`. It includes data preprocessing, training, validation, and metric evaluation.
+
+## Files
+- `dataset.py`: Dataset loading.
+- `model.py`: CNN model definition.
+- `loop.py`: Training and validation.
+- `metrics.py`: Metrics computation.
+- `main.py`: Main script.
+
+## Prerequisites
+- Python 3.7+, PyTorch, torchvision, scikit-learn, tqdm
+
+Install packages:
+```bash
+pip install torch torchvision scikit-learn tqdm
+```
+
+## Dataset Structure
+```
+animals10/
+    ├── train/
+    ├── val/
+    └── test/
+```
+Each class directory should contain images.
+
+## Configuration (`config.json`)
+```json
+{
+    "data_dir": "path/to/animals10",
+    "model_name": "ResNet18",
+    "batch_size": 32,
+    "learning_rate": 0.001,
+    "num_epochs": 10
+}
+```
+
+## Running the Code
+1. Prepare the dataset.
+2. Update `config.json`.
+3. Run:
+```bash
+python main.py
+```
+
+## Example Output
+```
+Test Precision: 0.9231
+Test Recall: 0.9100
+Test F1 Score: 0.9155
+```
+
+## Notes
+- GPU recommended for faster training.
+- Modify `model.py` to try other models like `ResNet50`.
+
+## License
+Licensed under MIT.
+
