@@ -30,7 +30,7 @@ def prepare_dataset(root_dir, output_dir, train_ratio=0.7, val_ratio=0.15, test_
         for img_name in test_images:
             shutil.copy(os.path.join(class_dir, img_name), os.path.join(output_dir, 'test', class_name, img_name))
             
-root_dir = './data/raw_data/AN10'
-output_dir = './data/dataset/AN10'
+root_dir = './dataset/animal10'
+output_dir = './data/dataset/anmimal10'
 
 prepare_dataset(root_dir=root_dir, output_dir=output_dir)

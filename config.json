@@ -1,5 +1,5 @@
 {
-    "data_dir": "./data/dataset/AN10",
+    "data_dir": "./data/dataset/animal10",
     "model_name": "ResNet18",
     "batch_size": 32,
     "learning_rate": 0.001,
