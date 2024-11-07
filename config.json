@@ -1,7 +1,7 @@
 {
     "data_dir": "./data/dataset/animal10",
-    "model_name": "ResNet18",
+    "model_name": "VGG16",
     "batch_size": 32,
-    "learning_rate": 0.001,
-    "num_epochs": 10
+    "learning_rate": 0.0001,
+    "num_epochs": 25
 }
