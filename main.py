@@ -5,6 +5,9 @@ from dataset import DatasetLoader
 from model import *
 from loop import Runner
 from metrics import Metrics
+from tqdm import tqdm
+import pandas as pd
+from datetime import datetime
 
 # Load configuration from config.json
 with open('config.json', 'r') as f:
@@ -29,10 +32,9 @@ model_class = globals()[MODEL_NAME]
 model = model_class(num_classes)
 
 # Train and validate model
-runner = Runner(model, train_loader, val_loader, device, NUM_EPOCHS, LEARNING_RATE)
+runner = Runner(model, train_loader, val_loader, test_loader, device, NUM_EPOCHS, LEARNING_RATE)
 runner.train()
-
-# Test model
+# Test final model
 all_labels, all_preds = runner.test(test_loader)
 
 # Compute and print metrics
@@ -40,3 +42,8 @@ precision, recall, f1 = Metrics.compute_metrics(all_labels, all_preds)
 print(f"Test Precision: {precision:.4f}")
 print(f"Test Recall: {recall:.4f}")
 print(f"Test F1 Score: {f1:.4f}")
+
+
+timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+print("Training metrics saved results_metrics...csv")
