@@ -23,3 +23,12 @@ class VGG16(nn.Module):
 
     def forward(self, x):
         return self.model(x)
+class AlexNet(nn.Module):
+    def __init__(self, num_classes):
+        super(AlexNet, self).__init__()
+        self.model = models.alexnet(pretrained=False)
+        num_features = self.model.classifier[6].in_features
+        self.model.classifier[6] = nn.Linear(num_features, num_classes)
+    
+    def forward(self, x):
+        return self.model(x)
