@@ -2,6 +2,9 @@
 
 # Ignore the data folder
 data/
+!data/animal10/dataset_preparation.py
+!data/animal2/dataset_preparation.py
+!data/animal90/dataset_preparation.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
