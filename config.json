@@ -1,5 +1,5 @@
 {
-    "data_dir": "./data/dataset/animal10",
+    "data_dir": "./data/animal10/cooked_data",
     "model_name": "VGG16",
     "batch_size": 32,
     "learning_rate": 0.0001,

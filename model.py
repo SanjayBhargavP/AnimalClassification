@@ -23,3 +23,44 @@ class VGG16(nn.Module):
 
     def forward(self, x):
         return self.model(x)
+
+class AlexNet(nn.Module):
+    def __init__(self, num_classes):
+        super(AlexNet, self).__init__()
+        self.model = models.alexnet(pretrained=False)
+        num_features = self.model.classifier[6].in_features
+        self.model.classifier[6] = nn.Linear(num_features, num_classes)
+    
+    def forward(self, x):
+        return self.model(x)
+    
+class ResNet18_TL(nn.Module):
+    def __init__(self, num_classes):
+        super(ResNet18_TL, self).__init__()
+        self.model = models.resnet18(weights='IMAGENET1K_V1')
+        num_features = self.model.fc.in_features
+        self.model.fc = nn.Linear(num_features, num_classes)
+    
+    def forward(self, x):
+        return self.model(x)
+    
+class AlexNet_TL(nn.Module):
+    def __init__(self, num_classes):
+        super(AlexNet_TL, self).__init__()
+        self.model = models.alexnet(weights='IMAGENET1K_V1')
+        num_features = self.model.classifier[6].in_features
+        self.model.classifier[6] = nn.Linear(num_features, num_classes)
+    
+    def forward(self, x):
+        return self.model(x)
+    
+class VGG16_TL(nn.Module):
+    def __init__(self, num_classes):
+        super(VGG16_TL, self).__init__()
+        self.model = models.vgg16_bn(weights='IMAGENET1K_V1')
+        num_features = self.model.classifier[6].in_features
+        self.model.classifier[6] = nn.Linear(num_features, num_classes)
+
+    def forward(self, x):
+        return self.model(x)
+
