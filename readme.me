@@ -1,7 +1,123 @@
-# README: Animal Classification Codebase
+# 🐾 Animal Species Classification using CNNs
 
-## Overview
-This project classifies animal species using `ResNet18, VGG16, AlexNet` with `PyTorch`. It includes data preprocessing, training, validation, and metric evaluation.
+This project explores and evaluates the effectiveness of Convolutional Neural Network (CNN) architectures for the task of classifying animal species from images. It is motivated by real-world applications in wildlife monitoring and biodiversity conservation.
+
+## 📌 Project Overview
+
+We compare three popular CNN architectures — **ResNet18**, **VGG16**, and **AlexNet** — across three datasets of increasing complexity:
+- **Oxford-IIIT Pet Dataset** (Binary classification: cats vs. dogs)
+- **Animals-10 Dataset** (10 animal classes)
+- **Animal Image Dataset** (90 animal classes)
+
+further enhanced selected models with **transfer learning** and **hyperparameter tuning**, followed by both **quantitative (accuracy, precision, recall, F1)** and **qualitative (Grad-CAM visualization)** analyses.
+
+## 📂 Datasets Used
+
+1. **Oxford-IIIT Pet Dataset**
+   - Binary classification: cat vs. dog
+   - ~7,349 images
+   - Source: [Oxford VGG](https://www.robots.ox.ac.uk/~vgg/data/pets/)
+
+2. **Animals-10 Dataset**
+   - 10-class classification
+   - ~28,000 images
+   - Source: [Kaggle - Animals-10](https://www.kaggle.com/alessiocorrado99/animals10)
+
+3. **Animal Image Dataset**
+   - 90-class classification (balanced: 60 images/class)
+   - ~5,400 images
+   - Source: [Kaggle - Animal-90](https://www.kaggle.com/datasets/iamsouravbanerjee/animal-image-dataset-90-different-animals)
+
+---
+
+## 🧠 Models Implemented
+
+| Model    | Key Features | FLOPs |
+|----------|--------------|-------|
+| **ResNet18** | Residual connections, deep architecture | 3.62G |
+| **VGG16**    | Small filters, deep layers, high capacity | 30.9G |
+| **AlexNet**  | Lightweight, larger filters, benchmark baseline | 1.44G |
+
+---
+
+## 🧪 Methodology
+
+1. **Data Preprocessing**:
+   - Resize to 224x224
+   - Normalize pixel values
+   - Train/Validation/Test Split: 70/15/15
+
+2. **Training**:
+   - Optimizer: Adam
+   - Loss Function: Cross-Entropy
+   - Epochs: Dynamic based on convergence
+   - Transfer Learning: Applied on Animal-90 dataset
+   - Hyperparameter Tuning: Grid search on ResNet18
+
+3. **Evaluation Metrics**:
+   - Accuracy
+   - Precision
+   - Recall
+   - F1 Score
+   - Grad-CAM for visual interpretation
+
+---
+
+## 📊 Key Results
+
+| Model        | Dataset        | Accuracy | Notes |
+|--------------|----------------|----------|-------|
+| ResNet18     | Animal-2       | **95.7%** | Highest performance |
+| VGG16        | Animals-10     | **87.2%** | Best for 10-class |
+| ResNet18 (TL)| Animal-90      | **87.9%** | With transfer learning |
+| AlexNet (TL) | Animal-90      | 74.4%     | Improved with TL |
+| AlexNet      | All datasets   | Lowest    | Lightest model |
+
+> **TL = Transfer Learning**
+
+---
+
+## 🔍 Ablation Study (ResNet18 - Animal90)
+
+conducted a grid search over:
+- **Learning Rates**: `[1e-5, 1e-4, 1e-3, 1e-2, 0.05]`
+- **Batch Sizes**: `[8, 16, 32]`
+
+**Best Configuration**:
+- Learning Rate: `1e-4`
+- Batch Size: `8`
+- Validation Accuracy: **55.31%** (without TL)
+
+---
+
+## 🎯 Grad-CAM Visualization
+
+Grad-CAM was applied to all three architectures to identify key activation regions. ResNet18 showed focused spatial attention, while AlexNet demonstrated broader, less concentrated activation — aligning with its lower classification performance.
+
+---
+
+## 💡 Conclusion
+
+- **ResNet18** emerged as the most effective and scalable architecture.
+- **Transfer learning** significantly boosts performance on small and complex datasets.
+- **Hyperparameter tuning** is crucial for optimal CNN performance, especially with limited data.
+- This study highlights the role of deep learning in wildlife conservation and real-world classification tasks.
+
+---
+
+## 🧾 References
+
+1. [Oxford-IIIT Pet Dataset](https://www.robots.ox.ac.uk/~vgg/data/pets/)
+2. [Animals-10 Dataset](https://www.kaggle.com/alessiocorrado99/animals10)
+3. [Animal-90 Dataset](https://www.kaggle.com/datasets/iamsouravbanerjee/animal-image-dataset-90-different-animals)
+4. ResNet, VGG16, AlexNet Papers
+5. Grad-CAM: Selvaraju et al.
+
+---
+
+## 📎 License
+
+This project is for academic purposes only and is governed by the data licenses of the respective datasets used.
 
 ## Files
 - `dataset.py`: Dataset loading.
